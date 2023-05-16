@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Article
 
 
 # Create your views here.
@@ -14,3 +14,11 @@ def repas(request):
 
 def boulangerie(request):
     return render(request, 'boulangerie.html')
+
+def liste_article(request):
+    tout_les_articles = Article.objects.all()
+    return render(request, 'liste_article.html', locals())
+
+def detail_article(request, pk):
+    article = Article.objects.get(id=pk)
+    return render(request, 'detail_article.html',locals())
