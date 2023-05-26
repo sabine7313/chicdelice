@@ -1,10 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Article
+from .form import FormulaireNewsletter
 
 
 # Create your views here.
-def accueil (request):
+def accueil(request):
+    form = FormulaireNewsletter()
+    if request.method == 'POST':
+        form = FormulaireNewsletter(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('accueil')
+
     return render(request, 'page_accueil.html')
+
+
 
 def appéritifs (request):
     return render(request, 'appéritifs.html')

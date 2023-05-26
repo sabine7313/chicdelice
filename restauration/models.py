@@ -10,3 +10,9 @@ class Article(models.Model):
     
     def __str__(self) :
         return self.titre
+    
+class Newsletter(models.Model):
+    email = models.EmailField()
+
+    def __str__(self):
+        return self.email
